@@ -6,3 +6,4 @@ lib
 rebuild.sh
 testapi.ps1
 tsconfig.json
+dockerfile
