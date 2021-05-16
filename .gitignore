@@ -1,7 +1,7 @@
 mongo-api.zip
 node_modules
 lib
-.dockerignore
+*.dockerignore
 *.eslintrc.js
 rebuild.sh
 testapi.ps1
