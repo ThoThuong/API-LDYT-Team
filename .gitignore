@@ -1,0 +1,8 @@
+mongo-api.zip
+node_modules
+lib
+*.dockerignore
+*.eslintrc.js
+rebuild.sh
+testapi.ps1
+tsconfig.json
