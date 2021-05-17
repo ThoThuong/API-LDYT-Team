@@ -47,23 +47,22 @@ app.put('/api/roles/:id',
 
 // this is for generic /api
 // app.get('/api/:collection', AuthHandler.VerifyToken, RequestHandler(CollectionController.getMany));
-
 app.post('/api/:collection', AuthHandler.VerifyToken, RequestHandler(CollectionController.post));
 app.delete('/api/:collection', AuthHandler.VerifyToken, RequestHandler(CollectionController.delete));
 
 // app.get('/api/:collection/:id', AuthHandler.VerifyToken, RequestHandler(CollectionController.getOne));
-
 app.delete('/api/:collection/:id', AuthHandler.VerifyToken, RequestHandler(CollectionController.delete));
 // app.put('/api/:collection/:id', AuthHandler.VerifyToken, RequestHandler(CollectionController.put));
 
 
 // add some router//
-app.get('/api/:collection/search', AuthHandler.VerifyToken, RequestHandler(CollectionController.search));
 
 app.get('/api/:collection', RequestHandler(CollectionController.getMany));
 app.get('/api/:collection/:id', RequestHandler(CollectionController.getOne));
 app.get('/api/:collection/:idOwner', RequestHandler(CollectionController.getManyOwner));
+
 app.put('/api/:collection/:id', AuthHandler.VerifyToken, RequestHandler(CollectionController.putUpdate));
+
 
 
 app.listen(port, function () {

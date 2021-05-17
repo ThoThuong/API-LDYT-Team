@@ -7,11 +7,10 @@ export const RequestHandler = (handler: <t>(collection: Collection<any>, data: a
 
   return (req: Request | RequestEx, res: Response): void => {
     const collectionName = (req as Request).params['collection'].toLowerCase();
-    const data: { id: string, body: any, query: any, feature: any, idOwner: any } = {
+    const data: { id: string, body: any, query: any, idOwner: any } = {
       id: (req as Request).params['id'] ?? (req as Request).query['id'],
       body: (req as Request).body,
       query: (req as Request).query,
-      feature: (req as Request).params['search']?.toLowerCase() ?? '',
       idOwner: (req as Request).params['idOwner'] ?? (req as Request).query['idOwner']
     }
     console.log(data);

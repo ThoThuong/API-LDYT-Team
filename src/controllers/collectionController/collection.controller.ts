@@ -5,6 +5,7 @@ export const CollectionController = {
     const limit = Number.parseInt(data.query?.limit ?? 10);
     const skip = Number.parseInt(data.query?.skip ?? 0);
     const filter: any = {};
+    console.log('test', collection);
 
     Object.keys(data.query)
       .filter(k => ['limit', 'skip'].every(r => r !== k))
@@ -43,13 +44,6 @@ export const CollectionController = {
 
 
 
-  search: async (collection: Collection<any>, data: { id: string, query: any, feature: any }): Promise<any> => {
-
-
-    return {
-      query: data.feature ?? 'không có'
-    };
-  },
 
   getManyOwner: async (collection: Collection<any>, data: { id: string, query: any, idOwner: any }): Promise<any> => {
     const limit = Number.parseInt(data.query?.limit ?? 10);
@@ -80,6 +74,28 @@ export const CollectionController = {
     });
 
     return collection.findOne({ '_id': new ObjectId(data.id) });
+  },
+  search: async (collection: Collection<any>, data: { id: string, query: any, idOwner: any }): Promise<any> => {
+    const limit = Number.parseInt(data.query?.limit ?? 10);
+    const skip = Number.parseInt(data.query?.skip ?? 0);
+    const filter: any = {};
+    console.log('test', collection);
+
+    Object.keys(data.query)
+      .filter(k => ['limit', 'skip'].every(r => r !== k))
+      .forEach(k => filter[k] = k === '_id' ? new ObjectId(data.query[k]) : data.query[k]);
+
+    return {
+      list: await collection.find(filter, {
+        limit: limit,
+        skip: skip
+      }).sort({ createdDate: -1 }).toArray(),
+      totalCount: (await collection.find(filter).toArray()).length,
+      idOwner: data.idOwner,
+      id: data.id
+
+    };
   }
+
 
 }
